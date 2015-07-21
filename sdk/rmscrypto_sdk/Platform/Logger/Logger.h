@@ -4,16 +4,17 @@
  * Licensed under the MIT License.
  * See LICENSE.md in the project root for license information.
  * ======================================================================
- */
+*/
 
-#ifndef _RMS_LIB_LOGGER_H_
-#define _RMS_LIB_LOGGER_H_
+#ifndef _CRYPTO_STREAMS_LIB_LOGGER_H_
+#define _CRYPTO_STREAMS_LIB_LOGGER_H_
 
 #include <string>
 #include <cstdio>
+#include <QDebug>
 #include <QProcessEnvironment>
 
-namespace rmscore {
+namespace rmscrypto {
 namespace platform {
 namespace logger {
 class Logger {
@@ -98,5 +99,6 @@ private:
 };
 } // namespace logger
 } // namespace platform
-} // namespace rmscore
-#endif // _RMS_LIB_LOGGER_H_
+} // namespace rmscrypto
+
+#endif // _CRYPTO_STREAMS_LIB_LOGGER_H_

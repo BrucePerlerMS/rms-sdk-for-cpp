@@ -11,13 +11,14 @@
 #include "RestServiceUrls.h"
 #include "RestClientErrorHandling.h"
 #include "../Json/IJsonSerializer.h"
+#include "../Platform/Logger/Logger.h"
 #include <string>
 #include <locale>
 #include <sstream>
-#include <QDebug>
 #include "../ModernAPI/RMSExceptions.h"
 
 using namespace rmscore::platform;
+using namespace rmscore::platform::logger;
 
 namespace rmscore { namespace restclients {
 
@@ -69,7 +70,7 @@ std::string ServiceDiscoveryClient::CreateGetRequest(const std::string& discover
         bool beginsWithHttps = std::equal(HTTPS_PROTOCOL.begin(), HTTPS_PROTOCOL.end(), discoveryUrl.begin(), CharEqual);
         if (!beginsWithHttps)
         {
-            qDebug() << "The following discovery service is unsecured: " << discoveryUrl.c_str();
+            Logger::Hidden("The following discovery service is unsecured: %s", discoveryUrl.c_str());
             throw exceptions::RMSInvalidArgumentException("invalid servise name");
         }
     }

@@ -12,7 +12,7 @@
 #include <sstream>
 #include <string>
 
-namespace rmscore {
+namespace rmscrypto {
 namespace platform {
 namespace logger {
 Logger& Logger::instance() {
@@ -40,7 +40,7 @@ static std::string localTime(const char *format) {
 LoggerImplQt::LoggerImplQt() {
   std::stringstream filename;
 
-  filename << "rms_log_" << localTime("%H%M%S-%d%m") << ".log";
+  filename << "rmscrypto_log_" << localTime("%H%M%S-%d%m") << ".log";
 
   this->stream_.open(filename.str(), std::ofstream::out | std::ofstream::trunc);
 
@@ -61,5 +61,5 @@ void LoggerImplQt::append(const std::string& prefix, const std::string& record) 
 }
 } // namespace logger
 } // namespace platform
-} // namespace rmscore
+} // namespace rmscrypto
 #endif // QTFRAMEWORK

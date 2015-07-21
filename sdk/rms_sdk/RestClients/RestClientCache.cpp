@@ -17,9 +17,9 @@
 #include <sstream>
 #include <fstream>
 #include <future>
-#include <QDebug>
 
 using namespace std;
+using namespace rmscore::platform::logger;
 
 namespace rmscore {
 namespace restclients {

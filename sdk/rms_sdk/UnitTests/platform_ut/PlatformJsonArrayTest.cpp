@@ -13,6 +13,7 @@
 #include "../../Platform/Json/IJsonArray.h"
 
 using namespace rmscore::platform::json;
+using namespace rmscore::platform::logger;
 
 void PlatformJsonArrayTest::testGetStringAt_data()
 {
@@ -58,7 +59,7 @@ void PlatformJsonArrayTest::testGetStringAt()
   }
   catch (std::invalid_argument& e)
   {
-    qDebug() << "Error: " << e.what();
+    Logger::Error("Exception: %s", e.what());
   }
 }
 

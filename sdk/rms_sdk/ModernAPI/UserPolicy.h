@@ -16,6 +16,7 @@
 #include "IConsentCallback.h"
 #include "ModernAPIExport.h"
 #include "CacheControl.h"
+#include "TemplateDescriptor.h"
 #include "PolicyDescriptor.h"
 
 namespace rmscore {
@@ -43,33 +44,66 @@ struct DLL_PUBLIC_RMS GetUserPolicyResult {
   std::shared_ptr<UserPolicy> Policy;
 };
 
-/**
-  @brief Specifies the expected mode for an operation. For example, can library use UI or expect available network.
-*/
+/*!
+   @brief Specifies the expected mode for an operation. For example, can library
+      use UI or expect available network.
+ */
 enum PolicyAcquisitionOptions {
-  /**
-    @brief The framework will try to perform the operation silently and offline, but will show a UI and connect to a network if necessary.
-  */
+  /*!
+     @brief Allow UI and network operations.
+
+     The framework will try to perform the operation silently and offline, but
+        will show a UI and connect to a network if necessary.
+   */
   POL_None = 0x0,
 
-  /**
-    The framework will try to perform the operation without connecting to a network. If it needs to connect to a network, the operation will fail. For example, an app can choose not to open a document on the device when it is not connected to a WiFi network unless it can be opened offline.
-  */
+  /*!
+     @brief Do not allow UI and network operations.
+
+     The framework will try to perform the operation without connecting to a
+        network. If it needs to connect to a network, the operation will fail.
+        For example, an app can choose not to open a document on the device when
+        it is not connected to a WiFi network unless it can be opened offline.
+   */
   POL_OfflineOnly = 0x1
 };
+
+/*!
+   @brief Flags related to policy.
+ */
 enum UserPolicyCreationOptions {
-  USER_None                   = 0x0,
-  USER_AllowAuditedExtraction = 0x1,     // specifies whether the
-                                         // content can be opened in a non-RMS
-                                         // aware app or not
-  USER_PreferDeprecatedAlgorithms = 0x2, // specifies whether the
-                                         // deprecated algorithms (ECB) is
-                                         // preferred or not
-};
-enum UserPolicyType {
-  TemplateBased = 0, Custom = 1,
+  USER_None = 0x0,
+
+  /*!
+     @brief Content can be opened in a non-RMS-aware app.
+   */
+  USER_AllowAuditedExtraction = 0x1,
+
+  /*!
+     @brief Deprecated cryptographic algorithms (ECB) are okay. For backwards
+        compatibility.
+   */
+  USER_PreferDeprecatedAlgorithms = 0x2,
 };
 
+/*!
+   @brief Source of policy.
+ */
+enum UserPolicyType {
+  /*!
+     @brief Policy was created from a template.
+   */
+  TemplateBased = 0,
+
+  /*!
+     @brief Policy was created adhoc.
+   */
+  Custom = 1,
+};
+
+/*!
+   @brief
+ */
 class DLL_PUBLIC_RMS UserPolicy {
 public:
 
@@ -94,7 +128,8 @@ public:
     IAuthenticationCallback & authenticationCallback,
     UserPolicyCreationOptions options);
 
-  bool AccessCheck(const std::string& right) const;
+  bool                                              AccessCheck(
+    const std::string& right) const;
 
   UserPolicyType                                    Type();
 
@@ -111,6 +146,7 @@ public:
   const AppDataHashMap                              EncryptedAppData();
   const AppDataHashMap                              SignedAppData();
   std::chrono::time_point<std::chrono::system_clock>ContentValidUntil();
+  bool                                              AllowOfflineAccess();
 
   bool                                              DoesUseDeprecatedAlgorithms();
   bool                                              IsAuditedExtractAllowed();

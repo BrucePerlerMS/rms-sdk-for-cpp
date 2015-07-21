@@ -4,15 +4,15 @@
  * Licensed under the MIT License.
  * See LICENSE.md in the project root for license information.
  * ======================================================================
- */
+*/
 
-#ifndef _RMS_LIB_LOGGERQTIMPL_H_
-#define _RMS_LIB_LOGGERQTIMPL_H_
+#ifndef _CRYPTO_STREAMS_LIB_LOGGERQTIMPL_H_
+#define _CRYPTO_STREAMS_LIB_LOGGERQTIMPL_H_
 
 #include "Logger.h"
 #include <fstream>
 
-namespace rmscore {
+namespace rmscrypto {
 namespace platform {
 namespace logger {
 class LoggerImplQt : public Logger {
@@ -33,6 +33,6 @@ private:
 };
 } // namespace logger
 } // namespace platform
-} // namespace rmscore
+} // namespace rmscrypto
 
-#endif // _RMS_LIB_LOGGERQTIMPL_H_
+#endif // _CRYPTO_STREAMS_LIB_LOGGERQTIMPL_H_
