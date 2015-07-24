@@ -2,6 +2,9 @@
 
 Straightforward steps for building libraries and samples on supported platforms.
 
+When you build the project, you will create four resulting libs; librms.so, librmsauth.so, librmscrypto.so, 
+and libwebAuthDialog.so.  All four are necessary (if you use our ADAL for OAuth).
+
 ---
 ## Supported targets
 - [Ubuntu 14.04](#ubuntu-1404)
